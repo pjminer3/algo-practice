@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>data-structures/splay-tree.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html">AVLTree</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#_getHeightAtNode">_getHeightAtNode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#_getNodesToRestructureInsert">_getNodesToRestructureInsert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#_getNodesToRestructureRemove">_getNodesToRestructureRemove</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#_isBalancedAtNode">_isBalancedAtNode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#_leftLeft">_leftLeft</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#_leftRight">_leftRight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#_maintainHeightBalanceProperty">_maintainHeightBalanceProperty</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#_restructure">_restructure</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#_rightLeft">_rightLeft</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#_rightRight">_rightRight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#find">find</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#findMax">findMax</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#findMin">findMin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#getDiameter">getDiameter</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#getTreeHeight">getTreeHeight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#inorder">inorder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#insert">insert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#isBalanced">isBalanced</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#lowestCommonAncestor">lowestCommonAncestor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#postorder">postorder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#preorder">preorder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.AVLTree.html#remove">remove</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.Node.html">Node</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.Node.html#value">value</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html">BinaryTree</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#find">find</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#findMax">findMax</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#findMin">findMin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#getDiameter">getDiameter</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#getHeight">getHeight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#inorder">inorder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#insert">insert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#isBalanced">isBalanced</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#lowestCommonAncestor">lowestCommonAncestor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#postorder">postorder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#preorder">preorder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.BinaryTree.html#remove">remove</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.Node.html">Node</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.Node.html#value">value</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_hash-table.Hashtable.html">Hashtable</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_hash-table.Hashtable.html#get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_hash-table.Hashtable.html#hashCode">hashCode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_hash-table.Hashtable.html#put">put</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_hash-table.Hashtable.html#remove">remove</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_hash-table.Node.html">Node</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_heap.Heap.html">Heap</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_heap.Heap.html#add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_heap.Heap.html#changeKey">changeKey</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_heap.Heap.html#extract">extract</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_heap.Heap.html#isEmpty">isEmpty</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_heap.Heap.html#top">top</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_heap.Heap.html#update">update</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.IntervalTree.html">IntervalTree</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.IntervalTree.html#add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.IntervalTree.html#contains">contains</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.IntervalTree.html#findMax">findMax</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.IntervalTree.html#height">height</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.IntervalTree.html#intersects">intersects</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.IntervalTree.html#remove">remove</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.IntervalTree.html#root">root</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.Node.html">Node</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.Node.html#interval">interval</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.Node.html#left">left</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.Node.html#max">max</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.Node.html#parentNode">parentNode</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.Node.html#right">right</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_linked-list.LinkedList.html">LinkedList</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_linked-list.LinkedList.html#hasCycle">hasCycle</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_linked-list.LinkedList.html#inorder">inorder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_linked-list.LinkedList.html#pop">pop</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_linked-list.LinkedList.html#push">push</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_linked-list.LinkedList.html#recursiveReverse">recursiveReverse</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_linked-list.LinkedList.html#remove">remove</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_linked-list.LinkedList.html#reverse">reverse</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_linked-list.LinkedList.html#shift">shift</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_linked-list.LinkedList.html#unshift">unshift</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_linked-list.Node.html">Node</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_linked-list.Node.html#data">data</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_linked-list.Node.html#next">next</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_linked-list.Node.html#prev">prev</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_red-black-tree.RBTree.html">RBTree</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_red-black-tree.RBTree.html#get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_red-black-tree.RBTree.html#levelOrderTraversal">levelOrderTraversal</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_red-black-tree.RBTree.html#put">put</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_size-balanced-tree-CreateSBTreeClass-SBTree.html">SBTree</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_size-balanced-tree-CreateSBTreeClass-SBTree.html#push">push</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.Node.html">Node</a></span></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.Node.html#value">value</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html">SplayTree</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#_getHeight">_getHeight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#_splaylessSearch">_splaylessSearch</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#getDiameter">getDiameter</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#getHeight">getHeight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#inorder">inorder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#insert">insert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#isBalanced">isBalanced</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#lowestCommonAncestor">lowestCommonAncestor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#postorder">postorder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#preorder">preorder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#remove">remove</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.SplayTree.html#search">search</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-graphs_spanning-trees_prim.Graph.html">Graph</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-graphs_spanning-trees_prim.Graph.html#prim">prim</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-sets_quickfind.QuickFind.html">QuickFind</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-sets_quickfind.QuickFind.html#connected">connected</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-sets_quickfind.QuickFind.html#union">union</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-sets_quickunion.QuickUnion.html">QuickUnion</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-sets_quickunion.QuickUnion.html#connected">connected</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-sets_quickunion.QuickUnion.html#union">union</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="module-sets_weightquickunion.QuickUnion.html">QuickUnion</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-sets_weightquickunion.QuickUnion.html#connected">connected</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-sets_weightquickunion.QuickUnion.html#union">union</a></span></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-combinatorics_cartesianproduct.html">combinatorics/cartesianproduct</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-combinatorics_combinations.html">combinatorics/combinations</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-combinatorics_permutations.html">combinatorics/permutations</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-combinatorics_variations-repetition.html">combinatorics/variations-repetition</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_avl-tree.html">data-structures/avl-tree</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_binary-search-tree.html">data-structures/binary-search-tree</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_edge.html">data-structures/edge</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_hash-table.html">data-structures/hash-table</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_heap.html">data-structures/heap</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_interval-tree.html">data-structures/interval-tree</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_linked-list.html">data-structures/linked-list</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_red-black-tree.html">data-structures/red-black-tree</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_segment-tree.html">data-structures/segment-tree</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_size-balanced-tree.html">data-structures/size-balanced-tree</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_splay-tree.html">data-structures/splay-tree</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-data-structures_vertex.html">data-structures/vertex</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-graphs_others_tarjan-connected-components.html">graphs/others/tarjan-connected-components</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-graphs_others_topological-sort.html">graphs/others/topological-sort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-graphs_searching_bfs.html">graphs/searching/bfs</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-graphs_searching_dfs.html">graphs/searching/dfs</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-graphs_shortest-path_bellman-ford.html">graphs/shortest-path/bellman-ford</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-graphs_shortest-path_bellman-ford.html#.bellmanFord">bellmanFord</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-graphs_shortest-path_dijkstra.html">graphs/shortest-path/dijkstra</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-graphs_shortest-path_floyd-warshall.html">graphs/shortest-path/floyd-warshall</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-graphs_spanning-trees_prim.html">graphs/spanning-trees/prim</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-others_fibonacci.html">others/fibonacci</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-others_hanoi.html">others/hanoi</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-others_levenshtein-distance.html">others/levenshtein-distance</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-others_minCoinsChange.html">others/minCoinsChange</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-others_minkowski-distance.html">others/minkowski-distance</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-primes_is-prime.html">primes/is-prime</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-primes_prime-factor-tree.html">primes/prime-factor-tree</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-primes_sieve-of-eratosthenes.html">primes/sieve-of-eratosthenes</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-searching_binarysearch.html">searching/binarysearch</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-searching_knuth-morris-pratt.html">searching/knuth-morris-pratt</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-searching_longest-common-subsequence.html">searching/longest-common-subsequence</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-searching_longest-increasing-subsequence.html">searching/longest-increasing-subsequence</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-searching_maximum-subarray.html">searching/maximum-subarray</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-searching_maximum-subarray-divide-and-conquer.html">searching/maximum-subarray-divide-and-conquer</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-searching_quickselect.html">searching/quickselect</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-searching_recursive-binarysearch.html">searching/recursive-binarysearch</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sets_quickfind.html">sets/quickfind</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sets_quickunion.html">sets/quickunion</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sets_weightquickunion.html">sets/weightquickunion</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-shuffle_fisheryates.html">shuffle/fisheryates</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-shuffle_richarddurstenfeld.html">shuffle/richarddurstenfeld</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_3-way-string-quicksort.html">sorting/3-way-string-quicksort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_bubblesort.html">sorting/bubblesort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_bucketsort.html">sorting/bucketsort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_countingsort.html">sorting/countingsort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_heapsort.html">sorting/heapsort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_insertion-binary-sort.html">sorting/insertion-binary-sort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_insertionsort.html">sorting/insertionsort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_lsd.html">sorting/lsd</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_mergesort.html">sorting/mergesort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_mergesort_merge.html">sorting/mergesort/merge</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_msd.html">sorting/msd</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_oddeven-sort.html">sorting/oddeven-sort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_quicksort-declarative.html">sorting/quicksort-declarative</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_quicksort-middle.html">sorting/quicksort-middle</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_radixsort.html">sorting/radixsort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_recursive-insertionsort.html">sorting/recursive-insertionsort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_selectionsort.html">sorting/selectionsort</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-sorting_shellsort.html">sorting/shellsort</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">data-structures/splay-tree.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Splay Tree.
+ *
+ * @example
+ * var STree = require('path-to-algorithms/src/data-structures'+
+ * '/splay-tree');
+ * var sTree = new STree.SplayTree();
+ * sTree.insert(10);
+ * sTree.insert(5);
+ * sTree.insert(15);
+ * sTree.insert(7);
+ * sTree.insert(12);
+ * sTree.search(10);
+ * console.log(sTree._root);
+ * sTree.remove(10);
+ * console.log(sTree._root);
+ * sTree.search(15);
+ * console.log(sTree._root);
+ *
+ * @module data-structures/splay-tree
+ */
+(function (exports) {
+  'use strict';
+
+  /**
+   * Node of the tree.
+   *
+   * @public
+   * @constructor
+   * @param {Number|String} value Value of the node.
+   * @param {Node} left Left sibling.
+   * @param {Node} right Right sibling.
+   * @param {Node} parent Parent of the node.
+   */
+  exports.Node = function (value, left, right, parent) {
+    /**
+     * @member {Number|String}
+     */
+    this.value = value;
+    this._left = left;
+    this._right = right;
+    this._parent = parent;
+  };
+
+  /**
+   * Splay tree.
+   * {@link http://en.wikipedia.org/wiki/Splay_tree}
+   * @public
+   * @constructor
+   */
+  exports.SplayTree = function () {
+    this._root = null;
+  };
+
+  /**
+   * Splays a node to the root.&lt;br>&lt;br>
+   *
+   * @private
+   * @method
+   * @param {Node} node Node to be splayed.
+   * @returns {Node} The same node from the parameter, post splayed.
+   */
+  exports.SplayTree.prototype._splay = function (node) {
+    while (this._root !== node) {
+      var hasParent = node._parent !== null;
+      var hasGrandparent = (hasParent &amp;&amp; node._parent._parent !== null);
+      if (hasParent &amp;&amp; hasGrandparent) {
+        var isLeftChild = node._parent._left === node;
+        var isParentLeftChild = node._parent._parent._left === node._parent;
+        if (
+          (isLeftChild &amp;&amp; isParentLeftChild) ||
+          (!isLeftChild &amp;&amp; !isParentLeftChild)
+        ) {
+          node = this._zigZig(node);
+        } else {
+          node = this._zigZag(node);
+        }
+      } else {
+        node = this._zig(node);
+      }
+    }
+    return node;
+  };
+
+  /**
+   * Performs a zig-zig splay pattern&lt;br>&lt;br>
+   *
+   * @private
+   * @method
+   * @param {Node} node Node to be zig-zig'd.
+   * @returns {Node} The same node from the parameter, post splayed.
+   */
+  exports.SplayTree.prototype._zigZig = function (node) {
+
+    var parent = node._parent;
+    var grandParent = node._parent._parent;
+    var greatGrandParent = grandParent._parent !== undefined ?
+      grandParent._parent : null;
+
+    var orientation = (parent._right === node) ? '_right' : '_left';
+    var oppositeOrientation = (orientation === '_left') ? '_right' : '_left';
+    var grandParentOrientation = (greatGrandParent !== null &amp;&amp;
+      greatGrandParent._left === grandParent) ? '_left' : '_right';
+
+    // Fix grandparent &amp; great if it exists/not root
+    if (this._root === grandParent) {
+      this._root = node;
+    } else {
+      greatGrandParent[grandParentOrientation] = node;
+    }
+    grandParent._parent = parent;
+    // Fix grandparent subtree
+    grandParent[orientation] = parent[oppositeOrientation];
+    if (grandParent[orientation] !== null) {
+      grandParent[orientation]._parent = grandParent;
+    }
+    // Fix Parent
+    parent[oppositeOrientation] = grandParent;
+    parent[orientation] = node[oppositeOrientation];
+    if (parent[orientation] !== null) {
+      parent[orientation]._parent = parent;
+    }
+    parent._parent = node;
+    // Fix Curr Node
+    node[oppositeOrientation] = parent;
+    if (node === this._root) {
+      node._parent = null;
+    } else if (greatGrandParent !== null) {
+      node._parent = greatGrandParent;
+    }
+
+    return node;
+  };
+
+  /**
+   * Performs a zig-zag splay pattern&lt;br>&lt;br>
+   *
+   * @private
+   * @method
+   * @param {Node} node Node to be zig-zag'd.
+   * @returns {Node} The same node from the parameter, post splayed.
+   */
+  exports.SplayTree.prototype._zigZag = function (node) {
+
+    var parent = node._parent;
+    var grandParent = parent._parent;
+    var greatGrandParent = grandParent._parent !== undefined ?
+      grandParent._parent : null;
+
+    var orientation = (parent._left === node) ? '_left' : '_right';
+    var oppositeOrientation = (orientation === '_right') ? '_left' : '_right';
+    var grandParentOrientation = (greatGrandParent !== null &amp;&amp;
+      greatGrandParent._left === grandParent) ? '_left' : '_right';
+
+    // Fix GrandParent
+    if (this._root === grandParent) {
+      this._root = node;
+    } else {
+      greatGrandParent[grandParentOrientation] = node;
+    }
+    grandParent._parent = node;
+    // Fix GrandParent subtree
+    grandParent[oppositeOrientation] = node[orientation];
+    if (grandParent[oppositeOrientation] !== null) {
+      grandParent[oppositeOrientation]._parent = grandParent;
+    }
+    // Fix Parent
+    parent[orientation] = node[oppositeOrientation];
+    if (parent[orientation] !== null) {
+      parent[orientation]._parent = parent;
+    }
+    parent._parent = node;
+    // Fix Curr Node
+    node[orientation] = grandParent;
+    node[oppositeOrientation] = parent;
+    if (this._root === node) {
+      node._parent = null;
+    } else if (greatGrandParent !== null) {
+      node._parent = greatGrandParent;
+    }
+
+    return node;
+  };
+
+  /**
+   * Performs a zig splay pattern&lt;br>&lt;br>
+   *
+   * @private
+   * @method
+   * @param {Node} node Node to be zig'd.
+   * @returns {Node} The same node from the parameter, post splayed.
+   */
+  exports.SplayTree.prototype._zig = function (node) {
+
+    var parent = node._parent;
+    var orientation = (parent._right === node) ? '_right' : '_left';
+    var oppositeOrientation = (orientation === '_right') ? '_left' : '_right';
+
+    if (this._root === parent) {
+      this._root = node;
+    }
+    // Fix Parent
+    parent[orientation] = node[oppositeOrientation];
+    if (parent[orientation] !== null) {
+      parent[orientation]._parent = parent;
+    }
+    parent._parent = node;
+    // Fix Curr Node
+    node[oppositeOrientation] = parent;
+    node._parent = null;
+
+    return node;
+  };
+
+  /**
+   * Inserts a node into the splay tree.&lt;br>&lt;br>
+   * Time complexity: O(log N) in the average case
+   * and amortized O(log n) in the worst case.
+   *
+   * @public
+   * @method
+   * @param {Number|String} value Node value.
+   * @param {Node} current Current node.
+   */
+  exports.SplayTree.prototype.insert = function (value, current) {
+    if (this._root === null) {
+      this._root = new exports.Node(value, null, null, null);
+      return;
+    }
+    var insertKey;
+    current = current || this._root;
+    if (current.value > value) {
+      insertKey = '_left';
+    } else {
+      insertKey = '_right';
+    }
+    if (!current[insertKey]) {
+      current[insertKey] = new exports.Node(value, null, null, current);
+      this._splay(current[insertKey]);
+    } else {
+      this.insert(value, current[insertKey]);
+    }
+  };
+
+  /**
+   * In-order traversal from the given node.
+   *
+   * @private
+   * @param {Node} current Node from which to start the traversal.
+   * @param {Function} callback Callback which
+   *    will be called for each traversed node.
+   */
+  exports.SplayTree.prototype._inorder = function (current, callback) {
+    if (!current) {
+      return;
+    }
+    this._inorder(current._left, callback);
+    if (typeof callback === 'function') {
+      callback(current);
+    }
+    this._inorder(current._right, callback);
+  };
+
+  /**
+   * In-order traversal of the whole Splay Tree.
+   *
+   * @public
+   * @method
+   * @param {Function} callback Callback which will be
+   * called for each traversed node.
+   */
+  exports.SplayTree.prototype.inorder = function (callback) {
+    return this._inorder(this._root, callback);
+  };
+
+  /**
+   * Post-order traversal from given node.
+   *
+   * @private
+   * @param {Node} current Node from which to start the traversal.
+   * @param {Function} callback Callback which will
+   * be called for each traversed node
+   */
+  exports.SplayTree.prototype._postorder = function (current, callback) {
+    if (!current) {
+      return;
+    }
+    if (typeof callback === 'function') {
+      callback(current);
+    }
+    this._postorder(current._left, callback);
+    this._postorder(current._right, callback);
+  };
+
+  /**
+   * Post-order traversal of the whole tree.
+   *
+   * @public
+   * @param {Function} callback Callback which
+   * will be called for each traversed node.
+   */
+  exports.SplayTree.prototype.postorder = function (callback) {
+    return this._postorder(this._root, callback);
+  };
+
+  /**
+   * Pre-order traversal of the tree from given node.
+   *
+   * @private
+   * @param {Node} current Node from which to start the traversal.
+   * @param {Function} callback Callback which
+   * will be called for each traversed node.
+   */
+  exports.SplayTree.prototype._preorder = function (current, callback) {
+    if (!current) {
+      return;
+    }
+    if (typeof callback === 'function') {
+      callback(current);
+    }
+    this._preorder(current._left, callback);
+    this._preorder(current._right, callback);
+  };
+
+  /**
+   * Pre-order preorder traversal of the whole tree.
+   *
+   * @public
+   * @param {Function} callback Callback which will
+   * be called for each traversed node.
+   */
+  exports.SplayTree.prototype.preorder = function (callback) {
+    return this._preorder(this._root, callback);
+  };
+
+  /**
+   * Finds a node by it's value.&lt;br>&lt;br>
+   * Average time complexity: O(log N).
+   *
+   * @public
+   * @param {Number|String} value of the node which should be found.
+   */
+  exports.SplayTree.prototype.search = function (value) {
+    var node = this._search(value, this._root);
+    return this._splay(node);
+  };
+
+  /**
+   * Finds a node by it's value.&lt;br>&lt;br>
+   * Average time complexity: O(log N).
+   *
+   * @public
+   * @param {Number|String} value of the node which should be found.
+   */
+  exports.SplayTree.prototype._splaylessSearch = function (value) {
+    return this._search(value, this._root);
+  };
+
+  /**
+   * Finds a node by it's value in a given sub-tree.
+   * Average time complexity: O(log N).
+   *
+   * @private
+   * @param {Number|String} value of the node which should be found.
+   * @param {Node} current node to be checked.
+   */
+  exports.SplayTree.prototype._search = function (value, current) {
+    if (!current) {
+      return null;
+    }
+
+    if (current.value === value) {
+      return current;
+    }
+
+    if (current.value > value) {
+      return this._search(value, current._left);
+    }
+
+    if (current.value &lt; value) {
+      return this._search(value, current._right);
+    }
+  };
+
+  /**
+   * Replaces given child with new one, for given parent.
+   *
+   * @private
+   * @param {Node} parent Parent node.
+   * @param {Node} oldChild Child to be replaced.
+   * @param {Node} newChild Child replacement.
+   */
+  exports.SplayTree.prototype._replaceChild =
+    function (parent, oldChild, newChild) {
+      if (!parent) {
+        this._root = newChild;
+        this._root._parent = null;
+      } else {
+        if (parent._left === oldChild) {
+          parent._left = newChild;
+        } else {
+          parent._right = newChild;
+        }
+
+        if (newChild) {
+          newChild._parent = parent;
+        }
+      }
+    };
+
+  /**
+   * Removes node with given value from the tree. &lt;br>&lt;br>
+   * Average runtime complexity: O(log N).
+   *
+   * @public
+   * @param {Number|String} value Value to be removed
+   * @returns {Boolean} True/false depending
+   *    on whether the given node is removed.
+   */
+  exports.SplayTree.prototype.remove = function (value) {
+    var node = this._splaylessSearch(value);
+    if (!node) {
+      return false;
+    }
+    if (node._left &amp;&amp; node._right) {
+      var min = this._findMin(node._right);
+      var temp = node.value;
+
+      node.value = min.value;
+      min.value = temp;
+      return this.remove(min);
+    } else {
+      if (node._parent !== null) {
+        if (node._left) {
+          this._replaceChild(node._parent, node, node._left);
+        } else if (node._right) {
+          this._replaceChild(node._parent, node, node._right);
+        } else {
+          this._replaceChild(node._parent, node, null);
+        }
+        this._splay(node._parent);
+      } else {
+        this._root = null;
+      }
+      return true;
+    }
+  };
+
+  /**
+   * Finds the node with minimum value in given sub-tree.
+   *
+   * @private
+   * @param {Node} node Root of the sub-tree.
+   * @param {Number|String} current Current minimum value of the sub-tree.
+   * @returns {Node} Node with the minimum value in the sub-tree.
+   */
+  exports.SplayTree.prototype._findMin = function (node, current) {
+    current = current || {
+      value: Infinity
+    };
+    if (!node) {
+      return current;
+    }
+    if (current.value > node.value) {
+      current = node;
+    }
+    return this._findMin(node._left, current);
+  };
+
+  exports.SplayTree.prototype._isBalanced = function (current) {
+    if (!current) {
+      return true;
+    }
+    return this._isBalanced(current._left) &amp;&amp;
+      this._isBalanced(current._right) &amp;&amp;
+      Math.abs(this._getHeight(current._left) -
+        this._getHeight(current._right)) &lt;= 1;
+  };
+
+  /**
+   * Returns whether the Splay Tree is balanced.
+   *
+   * @public
+   * @returns {Boolean} Whether the tree is balanced or not.
+   */
+  exports.SplayTree.prototype.isBalanced = function () {
+    return this._isBalanced(this._root);
+  };
+
+  /**
+   * Finds the diameter of the Splay Tree.
+   *
+   * @public
+   * @returns {Number} The longest path in the tree.
+   */
+  exports.SplayTree.prototype.getDiameter = function () {
+    var getDiameter = function (root) {
+      if (!root) {
+        return 0;
+      }
+      var leftHeight = this._getHeight(root._left);
+      var rightHeight = this._getHeight(root._right);
+      var path = leftHeight + rightHeight + 1;
+      return Math.max(path, getDiameter(root._left), getDiameter(root._right));
+    }.bind(this);
+    return getDiameter(this._root);
+  };
+
+  /**
+   * Returns the height of the tree.
+   *
+   * @public
+   * @returns {Number} The height of the tree.
+   */
+  exports.SplayTree.prototype.getHeight = function () {
+    return this._getHeight(this._root);
+  };
+
+  /**
+   * Recursive worker function for getHeight()
+   *
+   * @public
+   * @param {Node} node The node of the current recursive frame.
+   * @returns {Number} The height of the tree.
+   */
+  exports.SplayTree.prototype._getHeight = function (node) {
+    if (!node) {
+      return 0;
+    }
+    return 1 + Math.max(this._getHeight(node._left),
+      this._getHeight(node._right));
+  };
+
+  /**
+   * Finds the lowest common ancestor of two nodes.
+   *
+   * @public
+   * @returns {Node} The lowest common ancestor of the two nodes or null.
+   */
+  exports.SplayTree.prototype.lowestCommonAncestor =
+    function (firstNode, secondNode) {
+      return this._lowestCommonAncestor(firstNode, secondNode, this._root);
+    };
+
+  /**
+   * Obtains the lowest common ancestor for the given nodes.
+   *
+   * @private
+   * @param {Node} firstNode First node to be considered when checking
+   * for ancestor.
+   * @param {Node} secondNode Second node to be considered when checking
+   * for ancestor.
+   * @param {Node} current Current node.
+   * @returns {Node} The lowest common ancestor of the two nodes or null.
+   */
+  exports.SplayTree.prototype._lowestCommonAncestor =
+    function (firstNode, secondNode, current) {
+      var firstNodeInLeft = this._existsInSubtree(firstNode, current._left);
+      var secondNodeInLeft = this._existsInSubtree(secondNode, current._left);
+      var firstNodeInRight = this._existsInSubtree(firstNode, current._right);
+      var secondNodeInRight = this._existsInSubtree(secondNode, current._right);
+      if ((firstNodeInLeft &amp;&amp; secondNodeInRight) ||
+        (firstNodeInRight &amp;&amp; secondNodeInLeft)) {
+        return current;
+      }
+      if (secondNodeInLeft &amp;&amp; firstNodeInLeft) {
+        return this._lowestCommonAncestor(firstNode, secondNode, current._left);
+      }
+      if (secondNodeInRight &amp;&amp; secondNodeInLeft) {
+        return this._lowestCommonAncestor(firstNode, secondNode,
+          current._right);
+      }
+      return null;
+    };
+
+  /**
+   * Checks if a given node exists in a subtree.
+   *
+   * @private
+   * @param {Node} node Node to check for.
+   * @param {Node} root Root node of a given subtree.
+   * @returns {Node} The lowest common ancestor of the two nodes or null.
+   */
+  exports.SplayTree.prototype._existsInSubtree = function (node, root) {
+    if (!root) {
+      return false;
+    }
+    if (node === root.value) {
+      return true;
+    }
+    return this._existsInSubtree(node, root._left) ||
+      this._existsInSubtree(node, root._right);
+  };
+
+})(typeof window === 'undefined' ? module.exports : window);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Apr 22 2018 15:44:47 GMT-0700 (PDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
